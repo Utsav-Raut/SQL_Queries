@@ -1,0 +1,84 @@
+create table ConsumerDetails(Name varchar(25), Locality varchar(100), Total_amt_spend integer, Industry varchar(100));
+
+insert into ConsumerDetails values('Raj', 'Raj Nagar', 750, 'Manufacturing');
+insert into ConsumerDetails values('Ajay', 'Vijay Nagar', 500, 'Creative');
+insert into ConsumerDetails values('Sagar', 'Shivam Nagar', 900, 'News');
+insert into ConsumerDetails values('Akul', 'Preet Vihar', 350, 'Teaching');
+insert into ConsumerDetails values('Rohan', 'kakar Vihar', 1150, 'Tech');
+insert into ConsumerDetails values('Shantanu', 'Shanti Vihar', 2110, 'Defense');
+insert into ConsumerDetails values('Natasha', 'shakti nagar', 2200, 'Aviation');
+insert into ConsumerDetails values('Kapil', 'shakti nagar', 700, 'Aviation');
+insert into ConsumerDetails values('Tanmay', 'sikkim Nagar', 900, 'Defense');
+insert into ConsumerDetails values('Tarun', 'nikepur', 3000, 'Manufacturing');
+
+
+1) Counting rows and Items:-
+
+a) count() - select count(*) from ConsumerDetails;
+b) distinct - select distinct Industry from ConsumerDetails;
+c) count of distinct rows - select count(distinct Industry) from ConsumerDetails;
+
+
+2) Aggregate Functions:-
+
+a) Use the SUM() function to calculate the sum of the numerical column in a table - select sum(Total_amt_spend) as total_amt_spent from ConsumerDetails;
+b) calculate the average of the numeric columns, we use the AVG() function - select avg(Total_amt_spend) as avg_amt_spent from ConsumerDetails;
+c) Calculating the standard deviation - select stdev(Total_amt_spend) as stdrd_dev from ConsumerDetails; 
+
+
+3) Extreme value identification:-
+
+a) Max - select max(Total_amt_spend) as max_amt from ConsumerDetails; 
+b) Min - select min(Total_amt_spend) as min_amt from ConsumerDetails; 
+
+
+4) Slicing Data:-
+
+a) The retail store wants to find the customers coming from a locality, specifically Shakti Nagar and Shanti Vihar - 
+select Name from ConsumerDetails where Locality in('shakti nagar', 'Shanti Vihar');
+
+b) Find the customers who live in specific localities (Shakti Nagar and Shanti Vihar) and spend an amount greater than Rs. 2000
+select Name from ConsumerDetails where Locality in('shakti nagar', 'Shanti Vihar') and Total_amt_spend >= 2000;
+
+c) The retail store wants to retrieve all the consumers who are spending between Rs. 1000 and Rs. 2000 so as to push out special marketing offers
+select Name from ConsumerDetails where Total_amt_spend between 1000 and 2000;
+
+
+5) Limiting Data:-
+
+a) limit clause- select top 5 * from ConsumerDetails; (or select * from ConsumerDetails limit 5;) 
+b) offset - select * from ConsumerDetails order by Name offset 3 rows fetch next 2 rows only;
+
+
+6) Sorting Data:-
+
+a) ORDER BY - sort the data according to the column Total_amt_spend in ascending order
+select * from ConsumerDetails order by Total_amt_spend;
+
+select * from ConsumerDetails order by Total_amt_spend desc;
+
+
+7) Filtering patttern:-
+
+a) Like operator with wildcards 
+- we want all the localities that end with “Nagar”
+Ans: select * from ConsumerDetails where Locality like '%Nagar';
+
+- names of the consumers whose second character has “a” in their respective names
+Ans: select Name from ConsumerDetails where Name like '_a%';
+
+
+8) Groupings, Rolling up Data and Filtering in Groups:-
+
+- find the Number of Customers corresponding to the industries they belong to
+Ans: select Industry, count(*) as cnt from ConsumerDetails group by Industry order by count(*);
+
+- Find the sum of spendings by customers grouped by the industry they belong to
+Ans: select Industry, sum(Total_amt_spend) as category_sun from ConsumerDetails group by Industry order by Industry
+
+- Find the industries whose total_sum is greater than 2500
+Ans: select Industry, sum(Total_amt_spend) from ConsumerDetails group by Industry having sum(Total_amt_spend) > 2500 order by Industry;
+
+
+https://www.analyticsvidhya.com/blog/2020/07/8-sql-techniques-data-analysis-analytics-data-science/
+

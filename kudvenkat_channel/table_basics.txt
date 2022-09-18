@@ -1,0 +1,33 @@
+A primary key is used to identify uniquely each record in a table.
+
+Foreign Keys are used to enforce database integrity. In layman's terms, a foreign key in one table points to a primary key in another table.
+The foreign key constraint prevents invalid data from being inserted into the foreign key column. The values that you enter into the foreign
+key column, has to be one of the values contained in the table it points to.
+
+============================================================================================================================================================
+
+A column default can be specified using Default constraint. The DEFAULT constraint is used to insert a default value into a column.
+The default value will be added to all new records, if no other value is specified, including NULL.
+
+============================================================================================================================================================
+
+Cascading referential integrity constraint allows to define the actions Microsoft SQL Server should take when a user attempts to delete or update
+a key to which an existing foreign keys points.
+Options when setting up Cascading referential integrity constraint:
+1. No Action: This is the default behavior. No Action specifies that if an attempt is made to delete or update a row with a key referenced by 
+foreign keys in existing rows in other tables, an error is raised and the DELETE or UPDATE is rolled back.
+
+2. Cascade: Specifies that if an attempt is made to delete or update a row with a key referenced by foreign keys in exiting rows in other tables,
+all rows containing those foreign keys are also deleted or updated.
+
+3. Set NULL: Specifies that if an attempt is made to delete or update a row with a key referenced by foreign keys in existing rows in other tables,
+all rows containing those foreign keys are set to NULL.
+
+4. Set Default: Specifies that if an attempt is made to delete or update a row with a key referenced by foreign keys in existing rows in other tables,
+all rows containing those foreign keys are set to default values.
+
+============================================================================================================================================================
+
+Check Constraint:
+CHECK constraint is used to limit the range of values, that can be entered for a column.
+A constraint is just a boolean expression which returns a True or a False.
